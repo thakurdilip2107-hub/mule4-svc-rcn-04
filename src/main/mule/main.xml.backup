@@ -7,14 +7,12 @@
 
     <flow name="order-listener-flow">
         <ibm-mq:listener destination="ORDER.QUEUE" config-ref="IBM_MQ_Config">
-            <ibm-mq:reconnect frequency="40000" blocking="false"/>
         </ibm-mq:listener>
         <logger level="INFO" message="Order received: #[payload]"/>
     </flow>
 
     <flow name="payment-listener-flow">
         <ibm-mq:listener destination="PAYMENT.QUEUE" config-ref="IBM_MQ_Config">
-            <ibm-mq:reconnect frequency="40000" blocking="false"/>
         </ibm-mq:listener>
         <logger level="INFO" message="Payment received: #[payload]"/>
     </flow>
