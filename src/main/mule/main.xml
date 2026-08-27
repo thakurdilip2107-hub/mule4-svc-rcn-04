@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:ibm-mq="http://www.mulesoft.org/schema/mule/ibm-mq"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+                          http://www.mulesoft.org/schema/mule/ibm-mq http://www.mulesoft.org/schema/mule/ibm-mq/current/mule-ibm-mq.xsd">
+
+    <flow name="order-listener-flow">
+        <ibm-mq:listener destination="ORDER.QUEUE" config-ref="IBM_MQ_Config">
+        </ibm-mq:listener>
+        <logger level="INFO" message="Order received: #[payload]"/>
+    </flow>
+
+    <flow name="payment-listener-flow">
+        <ibm-mq:listener destination="PAYMENT.QUEUE" config-ref="IBM_MQ_Config">
+        </ibm-mq:listener>
+        <logger level="INFO" message="Payment received: #[payload]"/>
+    </flow>
+
+</mule>
